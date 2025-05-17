@@ -112,11 +112,11 @@ public class AuthenticationExecutionEntity {
         this.priority = priority;
     }
 
-    public boolean isAuthenticatorFlow() {
+    public boolean isAutheticatorFlow() {
         return authenticatorFlow;
     }
 
-    public void setAuthenticatorFlow(boolean authenticatorFlow) {
+    public void setAutheticatorFlow(boolean authenticatorFlow) {
         this.authenticatorFlow = authenticatorFlow;
     }
 

@@ -26,6 +26,7 @@ import org.keycloak.common.util.MultivaluedHashMap;
 import org.keycloak.common.util.Time;
 import org.keycloak.component.ComponentFactory;
 import org.keycloak.component.ComponentModel;
+import org.keycloak.models.*;
 import org.keycloak.models.GroupModel.GroupUpdatedEvent;
 import org.keycloak.models.jpa.entities.*;
 import org.keycloak.models.utils.ComponentUtil;
@@ -1580,7 +1581,7 @@ public class RealmAdapter implements StorageProviderRealmModel, JpaModel<RealmEn
         model.setAuthenticator(entity.getAuthenticator());
         model.setFlowId(entity.getFlowId());
         model.setParentFlow(entity.getParentFlow().getId());
-        model.setAuthenticatorFlow(entity.isAuthenticatorFlow());
+        model.setAuthenticatorFlow(entity.isAutheticatorFlow());
         model.setAuthenticatorConfig(entity.getAuthenticatorConfig());
         return model;
     }
@@ -1616,7 +1617,7 @@ public class RealmAdapter implements StorageProviderRealmModel, JpaModel<RealmEn
         entity.setParentFlow(flow);
         flow.getExecutions().add(entity);
         entity.setRealm(realm);
-        entity.setAuthenticatorFlow(model.isAuthenticatorFlow());
+        entity.setAutheticatorFlow(model.isAuthenticatorFlow());
         em.persist(entity);
         model.setId(entity.getId());
         return model;
@@ -1627,7 +1628,7 @@ public class RealmAdapter implements StorageProviderRealmModel, JpaModel<RealmEn
     public void updateAuthenticatorExecution(AuthenticationExecutionModel model) {
         AuthenticationExecutionEntity entity = getAuthenticationExecution(model.getId(), false);
         if (entity == null) return;
-        entity.setAuthenticatorFlow(model.isAuthenticatorFlow());
+        entity.setAutheticatorFlow(model.isAuthenticatorFlow());
         entity.setAuthenticator(model.getAuthenticator());
         entity.setPriority(model.getPriority());
         entity.setRequirement(model.getRequirement());
